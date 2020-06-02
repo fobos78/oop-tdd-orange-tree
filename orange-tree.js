@@ -5,13 +5,17 @@ class OrangeTree {
     this.age = age;
     this.height = height;
     this.array = [];
-    this.flag = false; //проверяем собрали ли урожай в этом сезоне
+
   }
 
   passGrowingSeason() {
     this.age += 1;
-    this.flag = true;
     if (this.height !== 25) this.height += 2.5;
+    this.array.length = 0;
+    let countOfOrange = Math.floor(Math.random() * 200 + 100)
+    for (let i = 0; i < countOfOrange; i++) {
+      this.array.push(new Orange())
+    }
   }
 
   isDead() {
@@ -26,7 +30,7 @@ class OrangeTree {
   }
 
   hasOranges() {
-    if (this.isMature() && flag) return true;
+    if (this.array.length > 0) return true;
     return false;
   }
 
@@ -36,13 +40,8 @@ class OrangeTree {
     if (!this.hasOranges()) {
       throw Error('This tree has no oranges');
     }
-    let countOfOrange = Math.floor(Math.random() * 200 + 100)
-    for (let i = 0; i < countOfOrange; i++) {
-      this.array.push(new Orange)
-    }
-    this.flag = false;
+    return this.array.pop()
     //  orange-picking logic goes here
-    return this.array;
   }
 }
 

@@ -3,28 +3,26 @@ let tree = new OrangeTree();
 const reportsBlock = document.getElementById('reports');
 
 // Позвольте сезонам пройти, пока дерево не будет готово приносить плоды.
-while(!tree.isMature()) {
+while (!tree.isMature()) {
   tree.passGrowingSeason();
 }
 
 
 //Сообщайте ежегодную информацию об урожае за время жизни дерева.
-while(!tree.isDead()){
+while (tree.isDead()) {
   tree.passGrowingSeason();
   let harvestedOranges = [];
 
-  while(tree.hasOranges()) {
+  while (tree.hasOranges()) {
     harvestedOranges.push(tree.pickAnOrange())
   }
-  debugger
-  let averageOrangeDiameter = harvestedOranges.map(item => item
-    .reduce((acc, el, arr)=>(acc += el)/arr.length));
- // averageOrangeDiameter = Необходимо рассчитать средний диаметр урожая.
 
-console.log(averageOrangeDiameter);
+  let averageOrangeDiameter = harvestedOranges.reduce((sum, el) => sum + el.diameter, 0) / harvestedOranges.length
+  // averageOrangeDiameter = Необходимо рассчитать средний диаметр урожая.
 
-    const report = document.createElement('div');
-    report.innerHTML =`
+
+  const report = document.createElement('div');
+  report.innerHTML = `
       <b>HARVEST_REPORT</b>
       <br/>
       YEAR ${tree.age} REPORT
@@ -33,15 +31,15 @@ console.log(averageOrangeDiameter);
       <br/>
       Harvest: ${harvestedOranges.length} oranges with an average
       <br/>
-      diameter of ${averageOrangeDiameter} inches.
+      diameter of ${averageOrangeDiameter.toFixed(1)} inches.
       <br/>
       <br/>
       -----------------------
       <br/>
       <br/>
     `;
-    reportsBlock.appendChild(report);
-  
+  reportsBlock.appendChild(report);
+
 }
 
 const lastReport = document.createElement('div');
