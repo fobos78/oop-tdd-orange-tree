@@ -19,7 +19,7 @@ class OrangeTree {
     return false;
   }
 
-  isMature() {
+  isMature() { // проверяет на возраст
     if (this.age > 5 && this.age < 100) return true;
     return false;
     //  Returns true if the tree is old enough to bear fruit, false otherwise
@@ -42,6 +42,7 @@ class OrangeTree {
     }
     this.flag = false;
     //  orange-picking logic goes here
+    return this.array;
   }
 }
 
